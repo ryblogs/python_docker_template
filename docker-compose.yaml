@@ -1,0 +1,6 @@
+services:
+  hello_world:
+    build: .
+    volumes:
+      - ./src/myproj:/app/src/myproj  # Mounts the source code from host to /app/src in the container
+    command: myproj
