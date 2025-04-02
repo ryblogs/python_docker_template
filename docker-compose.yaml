@@ -1,6 +1,8 @@
 services:
-  hello_world:
+  python_dev:
     build: .
     volumes:
-      - ./src/myproj:/app/src/myproj  # Mounts the source code from host to /app/src in the container
-    command: myproj
+      - ./src/project:/app/src/project
+    command: python
+    stdin_open: true       # equivalent to -i (interactive)
+    tty: true              # equivalent to -t (pseudo-TTY)

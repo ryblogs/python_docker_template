@@ -1,12 +1,21 @@
-# Use the official Python 3.12 slim base image
-FROM python:3.12-slim-bookworm
+# Use the official Python 3.13 slim base image
+FROM python:3.13-slim-bookworm
 
-# Set the working directory inside the container
+# Create a non-root user and group
+RUN addgroup --system appuser && adduser --system --ingroup appuser appuser
+
+# Set the working directory
 WORKDIR /app
 
-COPY setup.py /app/setup.py
+# Create the directory structure and fix ownership
+RUN mkdir -p /app/src/project && chown -R appuser:appuser /app
 
-RUN mkdir -p /app/src/myproj
-
-# Install the package in editable mode from the mounted directory
+# Copy setup.py and install dependencies as root
+COPY . /app/
 RUN pip install -e .
+
+# Switch to non-root user
+USER appuser
+
+# Default command (optional)
+CMD ["python"]
