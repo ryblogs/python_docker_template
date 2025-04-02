@@ -2,7 +2,7 @@ services:
   python_dev:
     build: .
     volumes:
-      - ./src/project:/app/src/project
+      - ./src/package:/app/src/package
     command: python
     stdin_open: true       # equivalent to -i (interactive)
     tty: true              # equivalent to -t (pseudo-TTY)

@@ -8,7 +8,7 @@ RUN addgroup --system appuser && adduser --system --ingroup appuser appuser
 WORKDIR /app
 
 # Create the directory structure and fix ownership
-RUN mkdir -p /app/src/project && chown -R appuser:appuser /app
+RUN mkdir -p /app/src/package && chown -R appuser:appuser /app
 
 # Copy setup.py and install dependencies as root
 COPY . /app/
